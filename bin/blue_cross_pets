@@ -1,4 +1,8 @@
+#!/usr/bin/env/ruby
+
+puts "Hello World"
+
 require "blue_cross_pets"
 
 bcp = BlueCrossPets::Instruct.new
-bcp.initial_instruction 
+bcp.initial_instruction

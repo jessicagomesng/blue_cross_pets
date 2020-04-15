@@ -1,4 +1,4 @@
-require "blue_cross_pets/version"
+require_relative "./blue_cross_pets/version"
 
 module BlueCrossPets
   class Error < StandardError; end
@@ -7,6 +7,6 @@ module BlueCrossPets
     def initial_instruction
     puts 'This is a test!'
   end
-end 
+end
 
 end
