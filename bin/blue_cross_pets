@@ -1,0 +1,4 @@
+require "blue_cross_pets"
+
+bcp = BlueCrossPets::Instruct.new
+bcp.initial_instruction 
