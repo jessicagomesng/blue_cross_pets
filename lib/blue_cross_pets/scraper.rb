@@ -6,15 +6,19 @@ class BlueCrossPets::Scraper
     pet_index = Nokogiri::HTML(html)
     pets = []
 
-    pet_index.css("div.item__text-wrapper").each do |pet_info|
+    profile_url =
+
+    #pet_index.css("div.item__text-wrapper").each do |pet_info|
+    pet_index.css("a.item__link").each do |pet_info|
       name = pet_info.css("h3.item__title").text
       breed = pet_info.css("ul.item__body li")[0].text
       gender = pet_info.css("ul.item__body li")[1].text
       age = pet_info.css("ul.item__body li")[2].text.gsub("\n", "").gsub("\t", "").strip
+      profile_url = "https://www.bluecross.org.uk" + pet_info.attribute("href").value
       #need to find a way to also add availability here
       #need to get profile URL here
 
-      pets << {name: name, breed: breed, gender: gender, age: age}
+      pets << {name: name, breed: breed, gender: gender, age: age, profile_url: profile_url}
     end
 
     pets
