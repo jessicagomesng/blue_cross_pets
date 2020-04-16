@@ -8,3 +8,4 @@ end
 
 require_relative "./blue_cross_pets/cli"
 require_relative "./blue_cross_pets/scraper"
+require_relative "./blue_cross_pets/dog"

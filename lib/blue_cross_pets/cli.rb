@@ -3,7 +3,7 @@
 class BlueCrossPets::CLI
 
   def call
-    puts "Welcome to the Blue Cross Pet Shelter!"
+    puts "Woof! Welcome to the Blue Cross Pet Shelter!"
     puts "We heard you're interested in adopting a furry friend."
     choose_animal
     goodbye
@@ -16,13 +16,14 @@ class BlueCrossPets::CLI
     input = gets.strip.downcase
       case input
       when "dogs"
-        puts "Woof! Fetching dogs..."
-        puts "Paw-fect choice! Here is a list of our available pets: "
+        puts "Paw-fect choice! Here is a list of our available dogs: "
+        @dogs = BlueCrossPets::Dog.list_all
         #depicts choose_pet for dog
         choose_pet
       when "cats"
         puts "Meow! Fetching cats..."
         puts "Paw-fect choice! Here is a list of our available pets: "
+        @cats = BlueCrossPets::Cat.list_all
         #depicts choose_pet for cat
         choose_pet
       else
