@@ -1,4 +1,6 @@
-class BlueCrossPets::Dog < Pet 
+require "./lib/blue_cross_pets/pet"
+
+class BlueCrossPets::Dog < BlueCrossPets::Pet
 
   attr_accessor :name, :breed, :gender, :age, :availability, :profile_url, :bio, :breed_and_colour, :can_live_with, :reference, :title
 
