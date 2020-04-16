@@ -4,7 +4,9 @@ class BlueCrossPets::Dog
 
   def self.list_all
     #should return a list of instances of available dogs
-    puts "1. Peety"
+    #dogs.all.each_with_index do
+    #puts "1. Peety"
+
     dog_1 = self.new
     dog_1.name = "Peety"
     dog_1.age = "14 years old"

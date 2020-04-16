@@ -1,2 +1,3 @@
-class Cat < Pet
-end 
+class Cat
+  
+end
