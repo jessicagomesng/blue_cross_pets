@@ -1,4 +1,4 @@
-class BlueCrossPets::Dog < Pet 
+class BlueCrossPets::Pet
 
   attr_accessor :name, :breed, :gender, :age, :availability, :profile_url, :bio, :breed_and_colour, :can_live_with, :reference, :title
 
@@ -55,5 +55,9 @@ class BlueCrossPets::Dog < Pet
   def self.all
     @@all
   end
+
+  def self.test
+    puts "test in progress"
+  end 
 
 end

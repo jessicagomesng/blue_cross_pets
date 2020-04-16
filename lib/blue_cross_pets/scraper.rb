@@ -31,10 +31,12 @@ class BlueCrossPets::Scraper
       attributes_hash[:title] = attribute.css("h2.section-title").text
       attributes_hash[:breed_and_colour] = attribute.css("li.pet-details_species").text.split(" - ")[1].strip
       attributes_hash[:can_live_with] = attribute.css("li.pet-details_info").text.gsub("\n", "").split(":")[1].strip
-      attributes_hash[:animal_reference] = attribute.css("li.pet-details_reference").text.gsub("\n", "").split(":")[1].strip
+      attributes_hash[:reference] = attribute.css("li.pet-details_reference").text.gsub("\n", "").split(":")[1].strip
     end
 
     attributes_hash
   end
 
 end
+
+#profile_url = https://www.bluecross.org.uk/pet/#{pet.name}-#{pet.reference}?type=adopt
