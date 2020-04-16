@@ -14,7 +14,7 @@ class BlueCrossPets::Pet
 
   def self.create_from_index(pet_array)
     pet_array.each do |pet_hash|
-      self.new(pet_hash) #see if animal exists 
+      self.new(pet_hash) #see if animal exists
     end
   end
 
@@ -40,10 +40,11 @@ class BlueCrossPets::Pet
     index = input.to_i - 1
     animal = all[index]
 
-    #if !animal.bio
-    #need to send that instance all the hash stuff
-    attribute_hash = BlueCrossPets::Scraper.scrape_profile(animal.profile_url)
-    animal.add_attributes(attribute_hash)
+    if !animal.bio
+      attribute_hash = BlueCrossPets::Scraper.scrape_profile(animal.profile_url)
+      animal.add_attributes(attribute_hash)
+    elsif animal.bio
+    end 
     #elsif animal.bio
     puts "All about #{animal.name}!"
     puts "Age: #{animal.age}"
