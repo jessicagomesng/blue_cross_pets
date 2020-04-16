@@ -4,7 +4,6 @@ class BlueCrossPets::Scraper
     html = open(index_url)
 
     pet_index = Nokogiri::HTML(html)
-    #create a hash with each pet's info. This will then be sent to the pet's class to create a new pet.
     pets = []
 
     pet_index.css("div.item__text-wrapper").each do |pet_info|
@@ -22,15 +21,12 @@ class BlueCrossPets::Scraper
   end
 
   def self.scrape_profile(profile_url)
-    #scrape additional info:
-    #bio, breed_and_colour, can_live_with, animal_reference
-    #list it as a hash
     pet_profile = Nokogiri::HTML(open(profile_url))
 
     attributes_hash = {}
 
     attributes_hash[:bio] = pet_profile.css("div.column-main p").text
-    #now extract other info
+
     pet_profile.css("div.column-aside").each do |attribute|
       attributes_hash[:title] = attribute.css("h2.section-title").text
       attributes_hash[:breed_and_colour] = attribute.css("li.pet-details_species").text.split(" - ")[1].strip
@@ -38,7 +34,7 @@ class BlueCrossPets::Scraper
       attributes_hash[:animal_reference] = attribute.css("li.pet-details_reference").text.gsub("\n", "").split(":")[1].strip
     end
 
-    attributes_hash 
+    attributes_hash
   end
 
 end
