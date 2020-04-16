@@ -3,8 +3,7 @@
 class BlueCrossPets::CLI
 
   def call
-    puts "Woof! Welcome to the Blue Cross Pet Shelter!"
-    puts "We heard you're interested in adopting a furry friend."
+    puts "Woof! Welcome to the Blue Cross Pet Shelter! We heard you're interested in adopting a furry friend."
     choose_animal
     goodbye
   end
@@ -18,12 +17,11 @@ class BlueCrossPets::CLI
       when "dogs"
         puts "Paw-fect choice! Here is a list of our available dogs: "
         BlueCrossPets::Dog.scrape_dogs
-        #depicts choose_pet for dog
         choose_dog
       when "cats"
         puts "Paw-fect choice! Here is a list of our available pets: "
         BlueCrossPets::Cat.scrape_cats
-        #depicts choose_pet for cat
+        #need to add choose_cat
       else
         puts "Sorry, we didn't understand that!"
         choose_animal
