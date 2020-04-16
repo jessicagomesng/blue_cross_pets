@@ -37,21 +37,22 @@ class BlueCrossPets::CLI
     #numbered list of all available pet types, based off scraper data
     #human inputs which cat they want. Otherwise, they want to go back & recall choose_animal
     input = nil
-    if input != "exit"
+    #if input != "exit"
       puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
       input = gets.strip.downcase
-      case input
-      when "1"
-        puts "More info on pet 1..."
-      when "2"
-        puts "More info on pet 2..."
-      when "list"
-        choose_animal
-      else
-        puts "Sorry, we didn't understand that!"
-        choose_pet
-      end
-    end
+      BlueCrossPets::Dog.get_dog_info(input)
+      #case input
+      #when "1"
+      #  puts "More info on pet 1..."
+      #when "2"
+      #  puts "More info on pet 2..."
+      #when "list"
+      #  choose_animal
+      #else
+      #  puts "Sorry, we didn't understand that!"
+      #  choose_pet
+      #end
+    #end
   end
 
   def goodbye

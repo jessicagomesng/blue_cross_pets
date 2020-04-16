@@ -1,6 +1,6 @@
 class BlueCrossPets::Pet
 
-  attr_accessor :name, :breed, :gender, :age, :availability, :profile_url, :bio, :breed_and_colour, :can_live_with, :reference, :title
+  attr_accessor :name, :breed, :gender, :age, :availability, :profile_url, :bio, :breed_and_colour, :can_live_with, :reference
 
   @@all = []
 
@@ -19,13 +19,10 @@ class BlueCrossPets::Pet
   end
 
   def add_attributes(attribute_hash)
-    if self.bio
-    elsif !self.bio
-      attribute_hash.each do |attribute, value|
-        self.send("#{attribute}=".to_sym, value)
-      end
-    self
+    attribute_hash.each do |attribute, value|
+      self.send("#{attribute}=".to_sym, value)
     end
+    self
   end
 
   def self.all

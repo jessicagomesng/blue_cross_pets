@@ -11,6 +11,15 @@ class BlueCrossPets::Dog < BlueCrossPets::Pet
     list_all
   end
 
-  def self.get_dog_info 
+  def self.get_dog_info(input)
+    #reference the input-1 object in your all array
+    index = input.to_i - 1
+    animal = all[index]
+    puts "#{animal.name}"
+    #get attributes for that dog
+    #if the dog's bio already exists then just return the dog instance
+    #otherwise, fetch the data, then return the dog instance.
+  end
+
 
 end
