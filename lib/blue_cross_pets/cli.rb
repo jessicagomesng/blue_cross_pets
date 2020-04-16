@@ -17,7 +17,7 @@ class BlueCrossPets::CLI
       case input
       when "dogs"
         puts "Paw-fect choice! Here is a list of our available dogs: "
-        @dogs = BlueCrossPets::Dog.list_all
+        BlueCrossPets::Dog.gets_dogs
         #depicts choose_pet for dog
         choose_pet
       when "cats"
