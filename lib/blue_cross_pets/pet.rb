@@ -58,6 +58,6 @@ class BlueCrossPets::Pet
 
   def self.test
     puts "test in progress"
-  end 
+  end
 
 end
