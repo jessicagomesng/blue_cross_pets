@@ -14,7 +14,7 @@ class BlueCrossPets::Pet
 
   def self.create_from_index(pet_array)
     pet_array.each do |pet_hash|
-      self.new(pet_hash)
+      self.new(pet_hash) #see if animal exists 
     end
   end
 
@@ -33,6 +33,31 @@ class BlueCrossPets::Pet
     self.all.each_with_index do |animal, index|
       puts "#{index + 1}. #{animal.name} - #{animal.breed} - #{animal.gender} - #{animal.age} - availability(update)"
     end
+  end
+
+  def self.get_more_info(input)
+    #reference the input-1 object in your all array
+    index = input.to_i - 1
+    animal = all[index]
+
+    #if !animal.bio
+    #need to send that instance all the hash stuff
+    attribute_hash = BlueCrossPets::Scraper.scrape_profile(animal.profile_url)
+    animal.add_attributes(attribute_hash)
+    #elsif animal.bio
+    puts "All about #{animal.name}!"
+    puts "Age: #{animal.age}"
+    puts "Gender: #{animal.gender}"
+    puts "Breed & colour: #{animal.breed_and_colour}"
+    puts "Can live with: #{animal.can_live_with}"
+    puts "Bio: #{animal.bio}"
+    puts "Animal reference number: #{animal.reference}"
+    puts "Visit my page: #{animal.profile_url}"
+    #:breed, :gender, :age, :availability, :profile_url, :bio, :breed_and_colour, :can_live_with, :reference
+    #get attributes for that dog
+    #if the dog's bio already exists then just return the dog instance
+    #otherwise, fetch the data, then return the dog instance.
+    #end
   end
 
   def self.test

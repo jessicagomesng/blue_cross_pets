@@ -42,5 +42,4 @@ class BlueCrossPets::Scraper
 
 end
 
-#profile_url = https://www.bluecross.org.uk/pet/#{pet.name}-#{pet.reference}?type=adopt
 #see if I can find a way to list them together if they come in a pair

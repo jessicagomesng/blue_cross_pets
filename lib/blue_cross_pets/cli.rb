@@ -17,15 +17,13 @@ class BlueCrossPets::CLI
       case input
       when "dogs"
         puts "Paw-fect choice! Here is a list of our available dogs: "
-        BlueCrossPets::Dog.gets_dogs
+        BlueCrossPets::Dog.get_dogs
         #depicts choose_pet for dog
-        choose_pet
+        choose_dog
       when "cats"
-        puts "Meow! Fetching cats..."
         puts "Paw-fect choice! Here is a list of our available pets: "
-        @cats = BlueCrossPets::Cat.list_all
+        BlueCrossPets::Cat.get_cats
         #depicts choose_pet for cat
-        choose_pet
       else
         puts "Sorry, we didn't understand that!"
         choose_animal
@@ -33,14 +31,14 @@ class BlueCrossPets::CLI
     end
   end
 
-  def choose_pet
+  def choose_dog
     #numbered list of all available pet types, based off scraper data
     #human inputs which cat they want. Otherwise, they want to go back & recall choose_animal
     input = nil
     #if input != "exit"
       puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
       input = gets.strip.downcase
-      BlueCrossPets::Dog.get_dog_info(input)
+      BlueCrossPets::Dog.get_more_info(input)
       #case input
       #when "1"
       #  puts "More info on pet 1..."
