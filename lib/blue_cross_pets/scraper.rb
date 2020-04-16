@@ -12,6 +12,8 @@ class BlueCrossPets::Scraper
       breed = pet_info.css("ul.item__body li")[0].text
       gender = pet_info.css("ul.item__body li")[1].text
       age = pet_info.css("ul.item__body li")[2].text.gsub("\n", "").gsub("\t", "").strip
+      #need to find a way to also add availability here
+      #need to get profile URL here
 
       pets << {name: name, breed: breed, gender: gender, age: age}
     end
@@ -19,25 +21,24 @@ class BlueCrossPets::Scraper
     pets
   end
 
-  def self.scrape_profile(#dog's_profile_url)
-    #name:, breed_and_color:, gender:, age:, availability, :can_live_with, :bio, :profile_url
+  def self.scrape_profile(profile_url)
+    #scrape additional info:
+    #bio, breed_and_colour, can_live_with, animal_reference
+    #list it as a hash
+    pet_profile = Nokogiri::HTML(open(profile_url))
 
+    attributes_hash = {}
+
+    attributes_hash[:bio] = pet_profile.css("div.column-main p").text
+    #now extract other info
+    pet_profile.css("div.column-aside").each do |attribute|
+      attributes_hash[:title] = attribute.css("h2.section-title").text
+      attributes_hash[:breed_and_colour] = attribute.css("li.pet-details_species").text.split(" - ")[1].strip
+      attributes_hash[:can_live_with] = attribute.css("li.pet-details_info").text.gsub("\n", "").split(":")[1].strip
+      attributes_hash[:animal_reference] = attribute.css("li.pet-details_reference").text.gsub("\n", "").split(":")[1].strip
+    end
+
+    attributes_hash 
   end
 
 end
-#each dog is held within:
-#dog_index.css("div.item__text-wrapper") |dog_info|
-#dog name : dog_info.css("h3.item__title").text
-#dog breed:  dog_info.css("ul.item__body li")[0].text
-#dog gender: dog_index.css("ul.item__body li")[1].text
-#dog age: dog_info.css("ul.item__body li")[2].text.gsub("\n", "").gsub("\t", "").strip
-#try to find a more elegant way to gsub this...
-#regex = \\n|\\t
-
-#each animal profile info
-#bio = pet_profile.css("div.column-main p").text
-#all other info held in: pet_profile.css("div.column-aside")
-#title ("bella's information") =  pet_profile.css("div.column-aside").css("h2.section-title").text
-#breed_and_colour = pet_profile.css("div.column-aside").css("li.pet-details_species").text.split(" - ")[1].strip
-#can_live_with = pet_profile.css("div.column-aside").css("li.pet-details_info").text.gsub("\n", "").split(":")[1].strip
-#animal_reference = pet_profile.css("div.column-aside").css("li.pet-details_reference").text.gsub("\n", "").split(":")[1].strip
