@@ -2,7 +2,7 @@ require "./lib/blue_cross_pets/pet"
 
 class BlueCrossPets::Dog < BlueCrossPets::Pet
 
-  def self.get_dogs
+  def self.scrape_dogs
 
     if all.length == 0
       dog_array = BlueCrossPets::Scraper.scrape_index("https://www.bluecross.org.uk/rehome/dog")

@@ -17,12 +17,12 @@ class BlueCrossPets::CLI
       case input
       when "dogs"
         puts "Paw-fect choice! Here is a list of our available dogs: "
-        BlueCrossPets::Dog.get_dogs
+        BlueCrossPets::Dog.scrape_dogs
         #depicts choose_pet for dog
         choose_dog
       when "cats"
         puts "Paw-fect choice! Here is a list of our available pets: "
-        BlueCrossPets::Cat.get_cats
+        BlueCrossPets::Cat.scrape_cats
         #depicts choose_pet for cat
       else
         puts "Sorry, we didn't understand that!"
@@ -39,6 +39,7 @@ class BlueCrossPets::CLI
       puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
       input = gets.strip.downcase
       BlueCrossPets::Dog.get_more_info(input)
+      #loop to have it choose another pet
       #case input
       #when "1"
       #  puts "More info on pet 1..."
