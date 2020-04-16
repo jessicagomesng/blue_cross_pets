@@ -19,7 +19,9 @@ class BlueCrossPets::Scraper
     pets
   end
 
-  def self.scrape_profile
+  def self.scrape_profile(#dog's_profile_url)
+    #name:, breed_and_color:, gender:, age:, availability, :can_live_with, :bio, :profile_url
+
   end
 
 end
@@ -31,3 +33,11 @@ end
 #dog age: dog_info.css("ul.item__body li")[2].text.gsub("\n", "").gsub("\t", "").strip
 #try to find a more elegant way to gsub this...
 #regex = \\n|\\t
+
+#each animal profile info
+#bio = pet_profile.css("div.column-main p").text
+#all other info held in: pet_profile.css("div.column-aside")
+#title ("bella's information") =  pet_profile.css("div.column-aside").css("h2.section-title").text
+#breed_and_colour = pet_profile.css("div.column-aside").css("li.pet-details_species").text.split(" - ")[1].strip
+#can_live_with = pet_profile.css("div.column-aside").css("li.pet-details_info").text.gsub("\n", "").split(":")[1].strip
+#animal_reference = pet_profile.css("div.column-aside").css("li.pet-details_reference").text.gsub("\n", "").split(":")[1].strip
