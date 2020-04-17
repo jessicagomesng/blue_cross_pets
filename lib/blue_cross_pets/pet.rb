@@ -31,7 +31,7 @@ class BlueCrossPets::Pet
 
   def self.list_all
     self.all.each_with_index do |animal, index|
-      puts "#{index + 1}. #{animal.name} - #{animal.breed} - #{animal.gender} - #{animal.age} - availability(update)"
+      puts "#{index + 1}. #{animal.name} - #{animal.breed} - #{animal.gender} - #{animal.age} - #{animal.availability}"
     end
   end
 
@@ -54,7 +54,7 @@ class BlueCrossPets::Pet
     if animal.can_live_with
       puts "Can live with: #{animal.can_live_with}"
     end
-    
+
     puts "Bio: #{animal.bio}"
     puts "Animal reference number: #{animal.reference}"
     puts "Visit my page: #{animal.profile_url}"

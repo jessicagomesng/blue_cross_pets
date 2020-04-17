@@ -15,10 +15,16 @@ class BlueCrossPets::Scraper
       gender = pet_info.css("ul.item__body li")[1].text
       age = pet_info.css("ul.item__body li")[2].text.gsub("\n", "").gsub("\t", "").strip
       profile_url = "https://www.bluecross.org.uk" + pet_info.attribute("href").value
+
+      if pet_info.css("div.banner").length > 0
+        availability = "reserved"
+      elsif pet_info.css("div.banner").length == 0
+        availability = "available"
+      end
       #need to find a way to also add availability here
       #need to get profile URL here
 
-      pets << {name: name, breed: breed, gender: gender, age: age, profile_url: profile_url}
+      pets << {name: name, breed: breed, gender: gender, age: age, profile_url: profile_url, availability: availability}
     end
 
     pets
@@ -39,7 +45,7 @@ class BlueCrossPets::Scraper
       if attribute.css("li.pet-details_info").length > 0
         attributes_hash[:can_live_with] = attribute.css("li.pet-details_info").text.gsub("\n", "").split(":")[1].strip
       end
-      
+
     end
 
     attributes_hash
