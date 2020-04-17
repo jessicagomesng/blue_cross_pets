@@ -26,7 +26,6 @@ class BlueCrossPets::CLI
         BlueCrossPets::Cat.scrape_cats
         choose_animal
       when "exit"
-        goodbye
       else
         puts "Sorry, we didn't understand that!"
         choose_animal
@@ -46,16 +45,17 @@ class BlueCrossPets::CLI
 
     if number?(input) == true
       if @current_animal == "dog"
-      BlueCrossPets::Dog.get_more_info(input)
+        BlueCrossPets::Dog.get_more_info(input)
+        choose_animal
       elsif @current_animal == "cat"
-      BlueCrossPets::Cat.get_more_info(input)
+        BlueCrossPets::Cat.get_more_info(input)
+        choose_animal
       end
     else
       case input
       when "list"
         choose_animal_type
       when "exit"
-        goodbye
       else
         puts "Sorry, we didn't understand that!"
         choose_animal
