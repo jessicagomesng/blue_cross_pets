@@ -15,11 +15,11 @@ class BlueCrossPets::CLI
     input = gets.strip.downcase
       case input
       when "dogs"
-        puts "Paw-fect choice! Here is a list of our available dogs: "
+        puts "Paw-fect choice! Here is a list of our dogs: "
         BlueCrossPets::Dog.scrape_dogs
         choose_dog
       when "cats"
-        puts "Paw-fect choice! Here is a list of our available pets: "
+        puts "Paw-fect choice! Here is a list of our cats: "
         BlueCrossPets::Cat.scrape_cats
         #need to add choose_cat
       else
