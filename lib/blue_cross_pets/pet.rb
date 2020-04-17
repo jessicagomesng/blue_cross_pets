@@ -15,33 +15,4 @@ class BlueCrossPets::Pet
     self
   end
 
-  def self.get_more_info(input)
-
-    index = input.to_i - 1
-    animal = all[index]
-
-    if !animal.breed_and_colour
-      attribute_hash = BlueCrossPets::Scraper.scrape_profile(animal.profile_url)
-      animal.add_attributes(attribute_hash)
-    elsif animal.breed_and_colour
-    end
-
-    #reformat this
-    puts "All about #{animal.name}!"
-    puts "Age: #{animal.age}"
-    puts "Gender: #{animal.gender}"
-    puts "Breed & colour: #{animal.breed_and_colour}"
-
-    if animal.can_live_with
-      puts "Can live with: #{animal.can_live_with}"
-    end
-
-    if animal.bio
-      puts "Bio: #{animal.bio}"
-    end
-
-    puts "Animal reference number: #{animal.reference}"
-    puts "Visit my page: #{animal.profile_url}"
-  end
-
 end

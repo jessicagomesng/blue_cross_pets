@@ -8,7 +8,6 @@ class BlueCrossPets::Scraper
 
     profile_url =
 
-    #pet_index.css("div.item__text-wrapper").each do |pet_info|
     pet_index.css("a.item__link").each do |pet_info|
       name = pet_info.css("h3.item__title").text
       breed = pet_info.css("ul.item__body li")[0].text
@@ -21,8 +20,6 @@ class BlueCrossPets::Scraper
       elsif pet_info.css("div.banner").length == 0
         availability = "available"
       end
-      #need to find a way to also add availability here
-      #need to get profile URL here
 
       pets << {name: name, breed: breed, gender: gender, age: age, profile_url: profile_url, availability: availability}
     end
@@ -37,7 +34,7 @@ class BlueCrossPets::Scraper
 
     if pet_profile.css("div.column-main p").length > 0
       attributes_hash[:bio] = pet_profile.css("div.column-main p").text
-    end 
+    end
 
     pet_profile.css("div.column-aside").each do |attribute|
 
@@ -54,5 +51,3 @@ class BlueCrossPets::Scraper
   end
 
 end
-
-#see if I can find a way to list them together if they come in a pair
