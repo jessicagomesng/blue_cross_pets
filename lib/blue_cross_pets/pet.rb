@@ -45,12 +45,16 @@ class BlueCrossPets::Pet
       animal.add_attributes(attribute_hash)
     elsif animal.bio
     end
-    
+
     puts "All about #{animal.name}!"
     puts "Age: #{animal.age}"
     puts "Gender: #{animal.gender}"
     puts "Breed & colour: #{animal.breed_and_colour}"
-    puts "Can live with: #{animal.can_live_with}"
+
+    if animal.can_live_with
+      puts "Can live with: #{animal.can_live_with}"
+    end
+    
     puts "Bio: #{animal.bio}"
     puts "Animal reference number: #{animal.reference}"
     puts "Visit my page: #{animal.profile_url}"
