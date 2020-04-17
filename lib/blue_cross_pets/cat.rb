@@ -17,8 +17,8 @@ class BlueCrossPets::Cat < BlueCrossPets::Pet
   end
 
   def self.list_all
-    self.all.each_with_index do |animal, index|
-      puts "#{index + 1}. #{animal.name} - #{animal.breed} - #{animal.gender} - #{animal.age} - #{animal.availability}"
+    self.all.each_with_index do |cat, index|
+      puts "#{index + 1}. ".blue + "#{cat.name} - #{cat.breed} - #{cat.gender} - #{cat.age} - #{cat.availability}"
     end
   end
 
@@ -37,30 +37,27 @@ class BlueCrossPets::Cat < BlueCrossPets::Pet
   def self.get_more_info(input)
 
     index = input.to_i - 1
-    animal = all[index]
+    cat = all[index]
 
-    if !animal.breed_and_colour
-      attribute_hash = BlueCrossPets::Scraper.scrape_profile(animal.profile_url)
-      animal.add_attributes(attribute_hash)
-    elsif animal.breed_and_colour
+    if !cat.reference
+      attribute_hash = BlueCrossPets::Scraper.scrape_profile(cat.profile_url)
+      cat.add_attributes(attribute_hash)
+    elsif cat.reference
     end
 
     #reformat this
-    puts "All about #{animal.name}!"
-    puts "Age: #{animal.age}"
-    puts "Gender: #{animal.gender}"
-    puts "Breed & colour: #{animal.breed_and_colour}"
+    puts "----------------------------- All about #{cat.name} -----------------------------".blue
+    puts "Age: ".light_white + "#{cat.age}"
+    puts "Gender: ".light_white + "#{cat.gender}"
+    puts "Breed & colour: ".light_white + "#{cat.breed_and_colour}"
 
-    if animal.can_live_with
-      puts "Can live with: #{animal.can_live_with}"
+    if cat.can_live_with
+      puts "Can live with: ".light_white + "#{cat.can_live_with}"
     end
 
-    if animal.bio
-      puts "Bio: #{animal.bio}"
-    end
-
-    puts "Animal reference number: #{animal.reference}"
-    puts "Visit my page: #{animal.profile_url}"
+    puts "Bio: ".light_white + "#{cat.bio}"
+    puts "Animal reference number: ".light_white + "#{cat.reference}"
+    puts "Visit my page: ".light_white + "#{cat.profile_url}"
   end
 
 end
