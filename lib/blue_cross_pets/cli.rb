@@ -65,6 +65,14 @@ class BlueCrossPets::CLI
 
   def goodbye
     puts "Thanks for stopping by! Have a great day!".blue.bold
+    text = <<-TEXT
+       h  h
+     h(")(")h
+    ("),--.(")
+     :"    ";
+     `.____,'
+     TEXT
+    puts text.light_white
   end
 
 end
