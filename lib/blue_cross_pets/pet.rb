@@ -2,16 +2,6 @@ class BlueCrossPets::Pet
 
   attr_accessor :name, :breed, :gender, :age, :availability, :profile_url, :bio, :breed_and_colour, :can_live_with, :reference
 
-  @@all = []
-
-  def initialize(pet_hash)
-    pet_hash.each do |attribute, value|
-      self.send("#{attribute}=".to_sym, value)
-    end
-
-    @@all << self
-  end
-
   def self.create_from_index(pet_array)
     pet_array.each do |pet_hash|
       self.new(pet_hash)
@@ -23,16 +13,6 @@ class BlueCrossPets::Pet
       self.send("#{attribute}=".to_sym, value)
     end
     self
-  end
-
-  def self.all
-    @@all
-  end
-
-  def self.list_all
-    self.all.each_with_index do |animal, index|
-      puts "#{index + 1}. #{animal.name} - #{animal.breed} - #{animal.gender} - #{animal.age} - #{animal.availability}"
-    end
   end
 
   def self.get_more_info(input)

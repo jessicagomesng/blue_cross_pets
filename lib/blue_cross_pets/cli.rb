@@ -38,17 +38,19 @@ class BlueCrossPets::CLI
   end
 
   def choose_animal
-    #need to add in a loop
     input = nil
     puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
     input = gets.strip.downcase
 
     if number?(input) == true
-      if @current_animal == "dog"
+      if @current_animal == "dog" && input.to_i.between?(1, BlueCrossPets::Dog.all.length)
         BlueCrossPets::Dog.get_more_info(input)
         choose_animal
-      elsif @current_animal == "cat"
+      elsif @current_animal == "cat" && input.to_i.between?(1, BlueCrossPets::Cat.all.length)
         BlueCrossPets::Cat.get_more_info(input)
+        choose_animal
+      else
+        puts "Sorry, we didn't understand that!"
         choose_animal
       end
     else
