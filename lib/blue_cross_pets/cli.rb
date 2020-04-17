@@ -5,7 +5,7 @@ class BlueCrossPets::CLI
   attr_accessor :current_animal
 
   def call
-    puts "Woof! Welcome to the" + "Blue Cross Pet Shelter!" + "We heard you're interested in adopting a furry friend."
+    puts "Woof! Welcome to the Blue Cross Pet Shelter! We heard you're interested in adopting a furry friend."
     choose_animal_type
     goodbye
   end
