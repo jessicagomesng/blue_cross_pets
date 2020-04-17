@@ -5,11 +5,12 @@ class BlueCrossPets::CLI
   attr_accessor :current_animal
 
   def call
-    puts "Woof! Welcome to the Blue Cross Pet Shelter! We heard you're interested in adopting a furry friend."
+    puts "Woof! Welcome to the" + "Blue Cross Pet Shelter!" + "We heard you're interested in adopting a furry friend."
     choose_animal_type
     goodbye
   end
 
+  #see if I can loop this better
   def choose_animal_type
     puts "To learn more about our adoptable dogs, type 'dogs'. To learn more about our adoptable cats, type 'cats'. To exit, type 'exit'."
     input = gets.strip.downcase
@@ -36,6 +37,7 @@ class BlueCrossPets::CLI
     !!(/\A[+-]?\d+\z/.match(input))
   end
 
+  #see if I can loop this better
   def choose_animal
     puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
     input = gets.strip.downcase
