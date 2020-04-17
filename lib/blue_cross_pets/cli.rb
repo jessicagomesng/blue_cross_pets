@@ -39,7 +39,7 @@ class BlueCrossPets::CLI
 
   #see if I can loop this better
   def choose_animal
-    puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
+    puts "Please enter the number of the pet you'd like more info on, or type 'menu' to choose a different animal, or 'exit' to exit."
     input = gets.strip.downcase
 
     if number?(input) == true
@@ -57,7 +57,7 @@ class BlueCrossPets::CLI
       end
     else
       case input
-      when "list"
+      when "menu"
         choose_animal_type
       when "exit"
       else

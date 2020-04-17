@@ -45,7 +45,6 @@ class BlueCrossPets::Cat < BlueCrossPets::Pet
     elsif cat.reference
     end
 
-    #reformat this
     puts "----------------------------- All about #{cat.name} -----------------------------".blue
     puts "Age: ".light_white + "#{cat.age}"
     puts "Gender: ".light_white + "#{cat.gender}"
