@@ -11,7 +11,7 @@ class BlueCrossPets::CLI
   end
 
   def choose_animal_type
-    puts "To learn more about our adoptable dogs, type 'dogs'. To learn more about our adoptable cats, type 'cats'. To exit, type 'exit'."
+    puts "To learn more about our adoptable dogs, type '" + "dogs".light_white + "'. To learn more about our adoptable cats, type '" + "cats".light_white + "'. To exit, type '" + "exit".light_white + "'."
     input = gets.strip.downcase
       case input
         when "dogs"
@@ -37,7 +37,7 @@ class BlueCrossPets::CLI
   end
 
   def choose_animal
-    puts "Please enter the number of the pet you'd like more info on, or type 'menu' to choose a different animal, or 'exit' to exit."
+    puts "Please enter the number of the pet you'd like more info on, or type '" + "menu".light_white + "' to choose a different animal, or '" + "exit".light_white + "' to exit."
     input = gets.strip.downcase
 
     if number?(input) == true
