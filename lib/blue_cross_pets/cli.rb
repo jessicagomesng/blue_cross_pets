@@ -34,9 +34,16 @@ class BlueCrossPets::CLI
     #human inputs which cat they want. Otherwise, they want to go back & recall choose_animal
     input = nil
     #if input != "exit"
-      puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
-      input = gets.strip.downcase
-      BlueCrossPets::Dog.get_more_info(input)
+    puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
+      if input != "exit"
+        input = gets.strip.downcase
+        BlueCrossPets::Dog.get_more_info(input)
+        choose_dog
+      elsif input == "list"
+        choose_animal
+      elsif input == "exit"
+          goodbye
+      end
       #loop to have it choose another pet
       #case input
       #when "1"
