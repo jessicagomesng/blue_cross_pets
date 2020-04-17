@@ -2,25 +2,29 @@
 
 class BlueCrossPets::CLI
 
+  attr_accessor :current_animal
+
   def call
     puts "Woof! Welcome to the Blue Cross Pet Shelter! We heard you're interested in adopting a furry friend."
-    choose_animal
+    choose_animal_type
     goodbye
   end
 
-  def choose_animal
+  def choose_animal_type
     input = nil
     puts "To learn more about our adoptable dogs, type 'dogs'. To learn more about our adoptable cats, type 'cats'. To exit, type 'exit'."
     input = gets.strip.downcase
       case input
       when "dogs"
+        @current_animal = "dog"
         puts "Paw-fect choice! Here is a list of our dogs: "
         BlueCrossPets::Dog.scrape_dogs
-        choose_dog
+        choose_animal
       when "cats"
+        @current_animal = "cat"
         puts "Paw-fect choice! Here is a list of our cats: "
         BlueCrossPets::Cat.scrape_cats
-        #need to add choose_cat
+        choose_animal
       when "exit"
         goodbye
       else
@@ -34,20 +38,22 @@ class BlueCrossPets::CLI
     !!(/\A[+-]?\d+\z/.match(input))
   end
 
-  def choose_dog
-    #numbered list of all available pet types, based off scraper data
-    #human inputs which cat they want. Otherwise, they want to go back & recall choose_animal
+  def choose_animal
+    #need to add in a loop
     input = nil
-    #if input != "exit"
     puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
     input = gets.strip.downcase
 
     if number?(input) == true
+      if @current_animal == "dog"
       BlueCrossPets::Dog.get_more_info(input)
+      elsif @current_animal == "cat"
+      BlueCrossPets::Cat.get_more_info(input)
+      end
     else
       case input
       when "list"
-        choose_animal
+        choose_animal_type
       when "exit"
         goodbye
       else
