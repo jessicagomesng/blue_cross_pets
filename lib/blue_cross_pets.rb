@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
+require 'colorize'
 
 module BlueCrossPets
   # Your code goes here...

@@ -5,7 +5,7 @@ class BlueCrossPets::CLI
   attr_accessor :current_animal
 
   def call
-    puts "Woof! Welcome to the Blue Cross Pet Shelter! We heard you're interested in adopting a furry friend."
+    puts "Woof! Welcome to the ".bold +  "Blue Cross Pet Shelter!".light_white.on_blue.bold + " We heard you're interested in adopting a furry friend.".bold
     choose_animal_type
     goodbye
   end
@@ -17,17 +17,17 @@ class BlueCrossPets::CLI
       case input
       when "dogs"
         @current_animal = "dog"
-        puts "Paw-fect choice! Here is a list of our dogs: "
+        puts "----------------------------- Our dogs: -----------------------------".blue
         BlueCrossPets::Dog.scrape_dogs
         choose_animal
       when "cats"
         @current_animal = "cat"
-        puts "Paw-fect choice! Here is a list of our cats: "
+        puts "----------------------------- Our cats: -----------------------------".blue
         BlueCrossPets::Cat.scrape_cats
         choose_animal
       when "exit"
       else
-        puts "Sorry, we didn't understand that!"
+        puts "Sorry, we didn't understand that!".red
         choose_animal_type
       end
   end
@@ -44,13 +44,15 @@ class BlueCrossPets::CLI
 
     if number?(input) == true
       if @current_animal == "dog" && input.to_i.between?(1, BlueCrossPets::Dog.all.length)
+        puts "Paw-fect choice!".light_white
         BlueCrossPets::Dog.get_more_info(input)
         choose_animal
       elsif @current_animal == "cat" && input.to_i.between?(1, BlueCrossPets::Cat.all.length)
+        puts "Paw-fect choice!".light_white
         BlueCrossPets::Cat.get_more_info(input)
         choose_animal
       else
-        puts "Sorry, we didn't understand that!"
+        puts "Sorry, we didn't understand that!".red
         choose_animal
       end
     else
@@ -59,14 +61,14 @@ class BlueCrossPets::CLI
         choose_animal_type
       when "exit"
       else
-        puts "Sorry, we didn't understand that!"
+        puts "Sorry, we didn't understand that!".red
         choose_animal
       end
     end
   end
 
   def goodbye
-    puts "Thanks for stopping by! Have a great day!"
+    puts "Thanks for stopping by! Have a great day!".blue.bold
   end
 
 end
