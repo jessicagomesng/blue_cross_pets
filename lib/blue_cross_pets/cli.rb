@@ -10,25 +10,24 @@ class BlueCrossPets::CLI
     goodbye
   end
 
-  #see if I can loop this better
   def choose_animal_type
     puts "To learn more about our adoptable dogs, type 'dogs'. To learn more about our adoptable cats, type 'cats'. To exit, type 'exit'."
     input = gets.strip.downcase
       case input
-      when "dogs"
-        @current_animal = "dog"
-        puts "----------------------------- Our dogs: -----------------------------".blue
-        BlueCrossPets::Dog.scrape_dogs
-        choose_animal
-      when "cats"
-        @current_animal = "cat"
-        puts "----------------------------- Our cats: -----------------------------".blue
-        BlueCrossPets::Cat.scrape_cats
-        choose_animal
-      when "exit"
-      else
-        puts "Sorry, we didn't understand that!".red
-        choose_animal_type
+        when "dogs"
+          @current_animal = "dog"
+          puts "----------------------------- Our dogs: -----------------------------".blue
+          BlueCrossPets::Dog.scrape_dogs
+          choose_animal
+        when "cats"
+          @current_animal = "cat"
+          puts "----------------------------- Our cats: -----------------------------".blue
+          BlueCrossPets::Cat.scrape_cats
+          choose_animal
+        when "exit"
+        else
+          puts "Sorry, we didn't understand that!".red
+          choose_animal_type
       end
   end
 
@@ -37,7 +36,6 @@ class BlueCrossPets::CLI
     !!(/\A[+-]?\d+\z/.match(input))
   end
 
-  #see if I can loop this better
   def choose_animal
     puts "Please enter the number of the pet you'd like more info on, or type 'menu' to choose a different animal, or 'exit' to exit."
     input = gets.strip.downcase
@@ -46,15 +44,13 @@ class BlueCrossPets::CLI
       if @current_animal == "dog" && input.to_i.between?(1, BlueCrossPets::Dog.all.length)
         puts "Paw-fect choice!".light_white
         BlueCrossPets::Dog.get_more_info(input)
-        choose_animal
       elsif @current_animal == "cat" && input.to_i.between?(1, BlueCrossPets::Cat.all.length)
         puts "Paw-fect choice!".light_white
         BlueCrossPets::Cat.get_more_info(input)
-        choose_animal
       else
         puts "Sorry, we didn't understand that!".red
-        choose_animal
       end
+      choose_animal
     else
       case input
       when "menu"

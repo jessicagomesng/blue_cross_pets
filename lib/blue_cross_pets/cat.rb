@@ -48,6 +48,7 @@ class BlueCrossPets::Cat < BlueCrossPets::Pet
     puts "----------------------------- All about #{cat.name} -----------------------------".blue
     puts "Age: ".light_white + "#{cat.age}"
     puts "Gender: ".light_white + "#{cat.gender}"
+    puts "Availability: ".light_white + "#{cat.availability}"
     puts "Breed & colour: ".light_white + "#{cat.breed_and_colour}"
 
     if cat.can_live_with

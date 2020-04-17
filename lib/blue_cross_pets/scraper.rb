@@ -16,9 +16,9 @@ class BlueCrossPets::Scraper
       profile_url = "https://www.bluecross.org.uk" + pet_info.attribute("href").value
 
       if pet_info.css("div.banner").length > 0
-        availability = "reserved"
+        availability = "Reserved"
       elsif pet_info.css("div.banner").length == 0
-        availability = "available"
+        availability = "Available"
       end
 
       pets << {name: name, breed: breed, gender: gender, age: age, profile_url: profile_url, availability: availability}
