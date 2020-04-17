@@ -10,7 +10,6 @@ class BlueCrossPets::CLI
 
   def choose_animal
     input = nil
-    while input != "exit"
     puts "To learn more about our adoptable dogs, type 'dogs'. To learn more about our adoptable cats, type 'cats'. To exit, type 'exit'."
     input = gets.strip.downcase
       case input
@@ -22,11 +21,17 @@ class BlueCrossPets::CLI
         puts "Paw-fect choice! Here is a list of our cats: "
         BlueCrossPets::Cat.scrape_cats
         #need to add choose_cat
+      when "exit"
+        goodbye
       else
         puts "Sorry, we didn't understand that!"
         choose_animal
       end
-    end
+  end
+
+  def number?(input)
+    input = input.to_s unless input.is_a? String
+    !!(/\A[+-]?\d+\z/.match(input))
   end
 
   def choose_dog
@@ -35,28 +40,21 @@ class BlueCrossPets::CLI
     input = nil
     #if input != "exit"
     puts "Please enter the number of the pet you'd like more info on, or type 'list' to choose a different animal, or 'exit' to exit."
-      if input != "exit"
-        input = gets.strip.downcase
-        BlueCrossPets::Dog.get_more_info(input)
-        choose_dog
-      elsif input == "list"
+    input = gets.strip.downcase
+
+    if number?(input) == true
+      BlueCrossPets::Dog.get_more_info(input)
+    else
+      case input
+      when "list"
         choose_animal
-      elsif input == "exit"
-          goodbye
+      when "exit"
+        goodbye
+      else
+        puts "Sorry, we didn't understand that!"
+        choose_animal
       end
-      #loop to have it choose another pet
-      #case input
-      #when "1"
-      #  puts "More info on pet 1..."
-      #when "2"
-      #  puts "More info on pet 2..."
-      #when "list"
-      #  choose_animal
-      #else
-      #  puts "Sorry, we didn't understand that!"
-      #  choose_pet
-      #end
-    #end
+    end
   end
 
   def goodbye
