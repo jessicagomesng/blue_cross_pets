@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Jessica Gomes-Ng'"]
   spec.email         = ["'jessicagomesng@gmail.com'"]
 
-  spec.summary       = %q{CLI that display Blue Cross dogs/cats available for adoption}
-  spec.description   = %q{Find a Blue Cross pet for adoption}
+  spec.summary       = %q{CLI that display Blue Cross UK adoptable dogs/cats}
+  spec.description   = %q{The Blue Cross Pets application will display all the available dogs/cats listed on the Blue Cross UK website as available for adoption. It can give you specific information about each dog/cat.}
   spec.homepage      = "https://github.com/jessicagomesng/blue_cross_pets"
   spec.license       = "MIT"
 
