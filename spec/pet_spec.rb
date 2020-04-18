@@ -27,32 +27,33 @@ RSpec.describe BlueCrossPets::Dog do
   #:profile_url=>"https://www.bluecross.org.uk"
   #:bio=>"I'm super cute!"}}
 
-  let!(:dog) {BlueCrossPets::Dog.new({:name => "Peety", :age => "14 years"})}
+  let!(:new_dog) {BlueCrossPets::Dog.new({:name => "Peety", :age => "14 years"})}
+
   after(:each) do
-    BlueCrossPets::Dog.class_variable_set(:@@all, [])
+    BlueCrossPets::Dog.class_variable_set(:@@dogs, [])
   end
 
   it 'inherits from the Pet class' do
-    expect(BlueCrossPets::Dog.methods).to include(create_from_index)
+    expect(BlueCrossPets::Dog.methods).to include(:create_from_index)
   end
 
   context 'ClassMethods' do
     describe 'initialize' do
       it "initializes with a hash and sets the dog's attributes using the hash's key/value pairs" do
         expect{BlueCrossPets::Dog.new({:name => "Peaches", :age => "4 years", :availability => "reserved"})}.to_not raise_error
-        expect(dog.name).to eq("Peety")
-        expect(dog.age).to eq("14 years")
+        expect(new_dog.name).to eq("Peety")
+        expect(new_dog.age).to eq("14 years")
       end
 
       it "adds that dog the Dog class' collection of all existing dogs, stored in the @@all class variable." do
-        expect(BlueCrossPets::Dog.class_variable_get(:@@all).first.name).to eq("Peety")
+        expect(BlueCrossPets::Dog.class_variable_get(:@@dogs).first.name).to eq("Peety")
       end
     end
 
     describe '.all' do
       it 'returns an array of all listed dogs' do
       expect(BlueCrossPets::Dog.all).to be_an(Array)
-      expect(BlueCrossPets::Dog.all).first.to be_a(BlueCrossPets::Dog)
+      expect(BlueCrossPets::Dog.all.first).to be_a(BlueCrossPets::Dog)
       end
     end
 
@@ -71,7 +72,7 @@ RSpec.describe BlueCrossPets::Cat do
     describe '.all' do
       it 'returns an array of all listed cats' do
       expect(BlueCrossPets::Cat.all).to be_an(Array)
-      expect(BlueCrossPets::Cat.all).first.to be_a(BlueCrossPets::Cat)
+      expect(BlueCrossPets::Cat.all.first).to be_a(BlueCrossPets::Cat)
       end
     end
   end
