@@ -1,4 +1,4 @@
-require_relative "./lib/blue_cross_pets/pet"
+require_relative "./pet"
 
 class BlueCrossPets::Cat < BlueCrossPets::Pet
 
