@@ -1,7 +1,7 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require_relative "../lib/blue_cross_pets/version"
+require "blue_cross_pets/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "blue_cross_pets"
@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Displays all the available dogs/cats listed on the Blue Cross UK website. This is my first gem, so please feel free to add suggestions.}
   spec.authors       = ["'Jessica Gomes-Ng'"]
   spec.email         = ["'jgnpeluso@gmail.com'"]
-  spec.files         = ["lib/blue_cross_pets.rb", "lib/blue_cross_pets/cli.rb", "lib/blue_cross_pets/scraper.rb", "lib/blue_cross_pets/dog.rb", "lib/blue_cross_pets/cat.rb", "lib/blue_cross_pets/pet.rb"]
+  spec.files         = ["bin/blue_cross_pets", "lib/blue_cross_pets.rb", "lib/blue_cross_pets/version.rb", "lib/blue_cross_pets/cli.rb", "lib/blue_cross_pets/scraper.rb", "lib/blue_cross_pets/dog.rb", "lib/blue_cross_pets/cat.rb", "lib/blue_cross_pets/pet.rb"]
 #  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
   #  `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
 #  end
