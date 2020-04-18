@@ -1,17 +1,6 @@
 require "spec_helper"
 
-#RSpec.describe BlueCrossPets::Pet do
-#  describe ".create_from_index" do
-#   it "uses the Scraper class to create new dogs with the correct name and location." do
-#     BlueCrossPets::Dog.class_variable_set(:@@all, [])
-#     BlueCrossPets::Dog.create_from_collection(student_index_array)
-#     expect(Student.class_variable_get(:@@all).first.name).to eq("Alex Patriquin")
-#   end
-# end
-#end
-
-RSpec.describe BlueCrossPets::Dog do
-
+RSpec.describe BlueCrossPets::Pet do
   let!(:dog_index_array) {[{:name=>"Pepper", :age=>"3 years"},
   {:name=>"Fido", :age=>"5 years"},
   {:name=>"Woofer", :age=>"1 year"},
@@ -19,14 +8,46 @@ RSpec.describe BlueCrossPets::Dog do
   {:name=>"Hershey", :age=>"5 years"},
   {:name=>"Maggie", :age=>"14 years"}]}
 
-  #let!(:dog_attribute_hash) {{:gender=>"male",
-  #:availability=>"available",
-  #:breed_and_colour=>"Cavalier King Charles Spaniel, tricolour",
-  #:can_live_with=>"Dogs, children",
-  #:reference=>"123456",
-  #:profile_url=>"https://www.bluecross.org.uk"
-  #:bio=>"I'm super cute!"}}
+  let!(:new_dog) {BlueCrossPets::Dog.new({:name => "Peety", :age => "14 years"})}
 
+  let!(:dog_attribute_hash) {{:gender=>"male",
+  :availability=>"reserved",
+  :breed_and_colour=>"Cavalier King Charles Spaniel, tricolour",
+  :can_live_with=>"Dogs, children",
+  :reference=>"123456",
+  :profile_url=>"https://www.bluecross.org.uk",
+  :bio=>"I'm super cute!"}}
+
+  context 'ClassMethods' do
+
+    describe ".create_from_index" do
+     it "uses the Scraper class to create new animals with the correct name and location." do
+       BlueCrossPets::Dog.class_variable_set(:@@dogs, [])
+       BlueCrossPets::Dog.create_from_index(dog_index_array)
+       expect(BlueCrossPets::Dog.class_variable_get(:@@dogs).first.name).to eq("Pepper")
+       expect(BlueCrossPets::Dog.class_variable_get(:@@dogs).first).to be_a(BlueCrossPets::Dog)
+     end
+   end
+ end
+
+ context 'InstanceMethods' do
+   describe "#add_attributes" do
+     it "uses the Scraper class to get additional attributes stored as a hash for each animal, and then adds those attributes to each animal from the hash." do
+       new_dog.add_attributes(dog_attribute_hash)
+       expect(new_dog.gender).to eq("male")
+       expect(new_dog.availability).to eq("reserved")
+       expect(new_dog.breed_and_colour).to eq("Cavalier King Charles Spaniel, tricolour")
+       expect(new_dog.can_live_with).to eq("Dogs, children")
+       expect(new_dog.reference).to eq("123456")
+       expect(new_dog.profile_url).to eq("https://www.bluecross.org.uk")
+       expect(new_dog.bio).to eq("I'm super cute!")
+     end
+   end
+ end
+
+end
+
+RSpec.describe BlueCrossPets::Dog do
   let!(:new_dog) {BlueCrossPets::Dog.new({:name => "Peety", :age => "14 years"})}
 
   after(:each) do
@@ -78,9 +99,6 @@ RSpec.describe BlueCrossPets::Cat do
   end
 
 end
-
-#  Pet expectations:
-#    assign attributes to animals
 
 #  Dog expectations: (currently has the aility to do this but it doesnt get called here, it gets called in cli class)
 #    create dog objects
