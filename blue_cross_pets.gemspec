@@ -6,11 +6,14 @@ require "blue_cross_pets/version"
 Gem::Specification.new do |spec|
   spec.name          = "blue_cross_pets"
   spec.version       = BlueCrossPets::VERSION
-  spec.authors       = ["'Jessica Gomes-Ng'"]
-  spec.email         = ["'jessicagomesng@gmail.com'"]
-
   spec.summary       = %q{CLI that display Blue Cross UK adoptable dogs/cats}
-  spec.description   = %q{The Blue Cross Pets CLI will display all the available dogs/cats listed on the Blue Cross UK website as available for adoption. It can give you specific information about each dog/cat.}
+  spec.description   = %q{Displays all the available dogs/cats listed on the Blue Cross UK website.}
+  spec.authors       = ["'Jessica Gomes-Ng'"]
+  spec.email         = ["'jgnpeluso@gmail.com'"]
+  spec.files         = ["lib/blue_cross_pets.rb", "lib/blue_cross_pets/cli.rb", "lib/blue_cross_pets/scraper.rb", "lib/blue_cross_pets/dog.rb", "lib/blue_cross_pets/cat.rb", "lib/blue_cross_pets/pet.rb"]
+#  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
+  #  `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+#  end
   spec.homepage      = "https://github.com/jessicagomesng/blue_cross_pets"
   spec.license       = "MIT"
 
@@ -29,9 +32,6 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
   spec.bindir        = "bin"
   spec.executables   = ["blue_cross_pets"]
   spec.require_paths = ["lib"]
