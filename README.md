@@ -1,4 +1,4 @@
-# BlueCrossPets
+# Blue Cross Pets CLI
 
 This Ruby Gem provides a CLI to view all of the adoptable dogs and cats on the Blue Cross Pets (UK) website.
 
