@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "blue_cross_pets"
   spec.version       = BlueCrossPets::VERSION
   spec.summary       = %q{CLI that display Blue Cross UK adoptable dogs/cats}
-  spec.description   = %q{Displays all the available dogs/cats listed on the Blue Cross UK website.}
+  spec.description   = %q{Displays all the available dogs/cats listed on the Blue Cross UK website. This is my first gem, so please feel free to add suggestions.}
   spec.authors       = ["'Jessica Gomes-Ng'"]
   spec.email         = ["'jgnpeluso@gmail.com'"]
   spec.files         = ["lib/blue_cross_pets.rb", "lib/blue_cross_pets/cli.rb", "lib/blue_cross_pets/scraper.rb", "lib/blue_cross_pets/dog.rb", "lib/blue_cross_pets/cat.rb", "lib/blue_cross_pets/pet.rb"]
