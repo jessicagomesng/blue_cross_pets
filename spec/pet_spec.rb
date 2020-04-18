@@ -66,7 +66,7 @@ RSpec.describe BlueCrossPets::Dog do
         expect(new_dog.age).to eq("14 years")
       end
 
-      it "adds that dog the Dog class' collection of all existing dogs, stored in the @@all class variable." do
+      it "adds that dog to the Dog class' collection of all existing dogs, stored in the @@dogs class variable." do
         expect(BlueCrossPets::Dog.class_variable_get(:@@dogs).first.name).to eq("Peety")
       end
     end
@@ -77,16 +77,31 @@ RSpec.describe BlueCrossPets::Dog do
       expect(BlueCrossPets::Dog.all.first).to be_a(BlueCrossPets::Dog)
       end
     end
-
   end
 
 end
 
 RSpec.describe BlueCrossPets::Cat do
+  let!(:new_cat) {BlueCrossPets::Cat.new({:name => "Harley", :age => "20 years"})}
+
+  after(:each) do
+    BlueCrossPets::Cat.class_variable_set(:@@cats, [])
+  end
+
+  it 'inherits from the Pet class' do
+    expect(BlueCrossPets::Cat.methods).to include(:create_from_index)
+  end
+
   context 'ClassMethods' do
     describe 'initialize' do
-      it "initializes with a hash and sets the cat's attributes using the hash's key/value pairs" do
-        expect{BlueCrossPets::Cat.new({:name => "Maddie", :age => "11 years"})}.to_not raise_error
+      it "initializes with a hash and sets the cat's's attributes using the hash's key/value pairs" do
+        expect{BlueCrossPets::Cat.new({:name => "Maddie", :age => "11 years", :availability => "available"})}.to_not raise_error
+        expect(new_cat.name).to eq("Harley")
+        expect(new_cat.age).to eq("20 years")
+      end
+
+      it "adds that cat to the Cat class' collection of all existing cats, stored in the @@cats class variable." do
+        expect(BlueCrossPets::Cat.class_variable_get(:@@cats).first.name).to eq("Harley")
       end
     end
 
@@ -99,8 +114,3 @@ RSpec.describe BlueCrossPets::Cat do
   end
 
 end
-
-#  Dog expectations: (currently has the aility to do this but it doesnt get called here, it gets called in cli class)
-#    create dog objects
-#    inherits from Pet class
-#    makes a master list of all dogs
