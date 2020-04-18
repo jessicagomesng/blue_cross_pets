@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require './lib/blue_cross_pets'
+require_relative '../lib/blue_cross_pets'
 
-BlueCrossPets::CLI.new.call 
-
-
+BlueCrossPets::CLI.new.call
