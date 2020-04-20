@@ -25,7 +25,7 @@ class BlueCrossPets::Dog < BlueCrossPets::Pet
   def self.scrape_dogs
 
     if all.length == 0
-      dog_array = BlueCrossPets::Scraper.scrape_index("https://www.bluecross.org.uk/rehome/dog")
+      dog_array = BlueCrossPets::Scraper.new.scrape_index("https://www.bluecross.org.uk/rehome/dog")
       create_from_index(dog_array)
       list_all
     elsif all.length > 0
@@ -40,7 +40,7 @@ class BlueCrossPets::Dog < BlueCrossPets::Pet
     dog = all[index]
 
     if !dog.reference
-      attribute_hash = BlueCrossPets::Scraper.scrape_profile(dog.profile_url)
+      attribute_hash = BlueCrossPets::Scraper.new.scrape_profile(dog.profile_url)
       dog.add_attributes(attribute_hash)
     elsif dog.reference
     end

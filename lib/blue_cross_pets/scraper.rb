@@ -1,6 +1,6 @@
 class BlueCrossPets::Scraper
 
-  def self.scrape_index(index_url)
+  def scrape_index(index_url)
     html = open(index_url)
 
     pet_index = Nokogiri::HTML(html)
@@ -27,7 +27,7 @@ class BlueCrossPets::Scraper
     pets
   end
 
-  def self.scrape_profile(profile_url)
+  def scrape_profile(profile_url)
     pet_profile = Nokogiri::HTML(open(profile_url))
 
     attributes_hash = {}
