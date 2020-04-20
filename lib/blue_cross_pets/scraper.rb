@@ -4,11 +4,8 @@ class BlueCrossPets::Scraper
     html = open(index_url)
 
     pet_index = Nokogiri::HTML(html)
-    pets = []
-
-    profile_url =
-
-    pet_index.css("a.item__link").each do |pet_info|
+    
+    pet_index.css("a.item__link").collect do |pet_info|
       name = pet_info.css("h3.item__title").text
       breed = pet_info.css("ul.item__body li")[0].text
       gender = pet_info.css("ul.item__body li")[1].text
@@ -21,10 +18,8 @@ class BlueCrossPets::Scraper
         availability = "Available"
       end
 
-      pets << {name: name, breed: breed, gender: gender, age: age, profile_url: profile_url, availability: availability}
+      {name: name, breed: breed, gender: gender, age: age, profile_url: profile_url, availability: availability}
     end
-
-    pets
   end
 
   def scrape_profile(profile_url)
