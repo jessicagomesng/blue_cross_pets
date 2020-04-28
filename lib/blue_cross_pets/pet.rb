@@ -8,6 +8,13 @@ class BlueCrossPets::Pet
     end
   end
 
+  def get_more_info
+    if !self.reference
+      attribute_hash = BlueCrossPets::Scraper.new.scrape_profile(self.profile_url)
+      self.add_attributes(attribute_hash)
+    end 
+  end 
+  
   def add_attributes(attribute_hash)
     attribute_hash.each do |attribute, value|
       self.send("#{attribute}=".to_sym, value)

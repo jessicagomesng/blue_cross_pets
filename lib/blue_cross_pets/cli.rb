@@ -17,12 +17,14 @@ class BlueCrossPets::CLI
         when "dogs"
           @current_animal = "dog"
           puts "----------------------------- Our dogs: -----------------------------".blue
-          BlueCrossPets::Dog.scrape_dogs
+          BlueCrossPets::Dog.create_dogs
+          list_all
           choose_animal
         when "cats"
           @current_animal = "cat"
           puts "----------------------------- Our cats: -----------------------------".blue
-          BlueCrossPets::Cat.scrape_cats
+          BlueCrossPets::Cat.create_cats
+          list_all
           choose_animal
         when "exit"
         else
@@ -30,6 +32,19 @@ class BlueCrossPets::CLI
           choose_animal_type
       end
   end
+
+  def list_all
+    if @current_animal == "dog"
+      BlueCrossPets::Dog.all.each.with_index(1) do |dog, index|
+        puts "#{index}. ".blue + "#{dog.name} - #{dog.breed} - #{dog.gender} - #{dog.age} - #{dog.availability}"
+      end
+
+    elsif @current_animal == "cat"
+      BlueCrossPets::Cat.all.each.with_index(1) do |dog, index|
+        puts "#{index}. ".blue + "#{dog.name} - #{dog.breed} - #{dog.gender} - #{dog.age} - #{dog.availability}"
+      end
+    end 
+  end 
 
   def number?(input)
     input = input.to_s unless input.is_a? String
@@ -41,12 +56,9 @@ class BlueCrossPets::CLI
     input = gets.strip.downcase
 
     if number?(input) == true
-      if @current_animal == "dog" && input.to_i.between?(1, BlueCrossPets::Dog.all.length)
+      if @current_animal == "dog" && input.to_i.between?(1, BlueCrossPets::Dog.all.length) || @current_animal == "cat" && input.to_i.between?(1, BlueCrossPets::Cat.all.length)
         puts "Paw-fect choice!".light_white
-        BlueCrossPets::Dog.get_more_info(input)
-      elsif @current_animal == "cat" && input.to_i.between?(1, BlueCrossPets::Cat.all.length)
-        puts "Paw-fect choice!".light_white
-        BlueCrossPets::Cat.get_more_info(input)
+        list_additional_info(input)
       else
         puts "Sorry, we didn't understand that!".red
       end
@@ -62,6 +74,32 @@ class BlueCrossPets::CLI
       end
     end
   end
+
+  def list_additional_info(input)
+    index = input.to_i - 1
+
+    if @current_animal == "dog" && input.to_i.between?(1, BlueCrossPets::Dog.all.length)
+      pet_choice = BlueCrossPets::Dog.all[index]
+    elsif @current_animal == "cat" && input.to_i.between?(1, BlueCrossPets::Cat.all.length)
+      pet_choice = BlueCrossPets::Cat.all[index]
+    end 
+
+    pet_choice.get_more_info 
+    
+    puts "----------------------------- All about #{pet_choice.name} -----------------------------".blue
+    puts "Age: ".light_white + "#{pet_choice.age}"
+    puts "Gender: ".light_white + "#{pet_choice.gender}"
+    puts "Availability: ".light_white + "#{pet_choice.availability}"
+    puts "Breed & colour: ".light_white + "#{pet_choice.breed_and_colour}"
+
+    if pet_choice.can_live_with
+      puts "Can live with: ".light_white + "#{pet_choice.can_live_with}"
+    end
+
+    puts "Bio: ".light_white + "#{pet_choice.bio}"
+    puts "Animal reference number: ".light_white + "#{pet_choice.reference}"
+    puts "Visit my page: ".light_white + "#{pet_choice.profile_url}"
+  end 
 
   def goodbye
     puts "Thanks for stopping by! Have a great day!".blue.bold
