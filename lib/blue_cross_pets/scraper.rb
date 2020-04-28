@@ -27,9 +27,7 @@ class BlueCrossPets::Scraper
 
     attributes_hash = {}
 
-    if pet_profile.css("div.column-main p").length > 0
-      attributes_hash[:bio] = pet_profile.css("div.column-main p").text
-    end
+    attributes_hash[:bio] = pet_profile.css("div.column-main p").text
 
     pet_profile.css("div.column-aside").each do |attribute|
       attributes_hash[:breed_and_colour] = attribute.css("li.pet-details_species").text.split(" - ")[1].strip
