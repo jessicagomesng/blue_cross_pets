@@ -40,6 +40,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.3'
   spec.add_development_dependency "pry", '~> 0.13.1'
   spec.add_development_dependency "rspec", '~> 3.9.0'
-  spec.add_dependency "nokogiri", '~> 1.10.9'
+  spec.add_dependency "nokogiri", '>= 1.10.9', '< 1.14.0'
   spec.add_dependency "colorize", '~> 0.8.1'
 end
